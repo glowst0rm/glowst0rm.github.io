@@ -11,16 +11,12 @@
       height: 100vh;
       margin: 0;
       text-align: center;
-      background-color: #f4f4f4;
-
     }
 
     .card {
       border: 2px solid black;
       border-radius: 10px;
       padding: 20px;
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       width: 90%;
       max-width: 400px;
     }
@@ -45,16 +41,19 @@
 
     img {
       max-width: 100%;
-      height: auto;
+      height: 100px; /* Fixed height */
+      object-fit: cover; /* Ensures the image fits nicely within the dimensions */
       margin-bottom: 1em;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h2>making video games for now.</h2> 
     <p><img src="https://glowst0rm.github.io/images/Duck.png" alt="Duck Image"></p>
-    <p><strong>developer and artist:</strong><br>Rohan Vernekar</p>
+    <h2>making video games for now.</h2> 
+
+    <p><strong>developer:</strong><br>Rohan Vernekar</p>
+
     <p><strong>support e-mail:</strong><br>rohanvernekar2002@gmail.com</p>
     <p><strong>more games:</strong><br>
       <a href="https://play.google.com/store/apps/dev?id=7754030292313758540">Google Play</a>
