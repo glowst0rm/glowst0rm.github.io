@@ -16,7 +16,7 @@
 
     .card {
       border: 2px solid black;
-      border-radius: 0; /* Square border */
+      border-radius: 0;
       padding: 20px;
       width: 90%;
       max-width: 400px;
@@ -28,7 +28,7 @@
       margin-bottom: 1em;
     }
 
-    h1 {
+    h1, h2 {
       margin: 0.5em 0;
     }
 
@@ -43,20 +43,19 @@
 
     img {
       width: 100%;
-      max-width: 100px; /* Smaller image size */
-      height: auto; /* Adjusts height based on width */
+      max-width: 100px;
+      height: auto;
       object-fit: cover;
       border-radius: 50%;
     }
 
-    /* Mobile-specific optimizations */
     @media screen and (max-width: 480px) {
       .card {
         padding: 15px;
       }
 
       img {
-        max-width: 80px; /* Smaller image size for mobile */
+        max-width: 80px;
       }
 
       p, h2 {
@@ -68,19 +67,11 @@
 <body>
   <div class="card">
     <p><img src="https://glowst0rm.github.io/images/Duck.png" alt="Duck Image"></p>
-    <h2>making video games for now.</h2> 
+    <h2>making video games.</h2> 
 
     <p><strong>developer:</strong><br>Rohan Vernekar</p>
 
     <p><strong>support e-mail:</strong><br>rohanvernekar2002@gmail.com</p>
-    <p><strong>more games:</strong><br>
-      <a href="https://play.google.com/store/apps/dev?id=7754030292313758540">Google Play</a>
-      &bull;
-      <a href="https://play.google.com/store/apps/dev?id=7754030292313758540">AppStore</a>
-    </p>
-    <p>
-      <a href="http://glowst0rm.github.io/privacypolicy.html">Privacy Policy</a>
-    </p>
   </div>
 </body>
 </html>
