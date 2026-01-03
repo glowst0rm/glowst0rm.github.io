@@ -8,15 +8,15 @@
     /* --- Main Layout Styles --- */
     body {
       display: flex;
-      flex-direction: column; /* Stacks card then gallery */
-      justify-content: flex-start; /* Aligns to top so you can scroll */
+      flex-direction: column; 
+      justify-content: flex-start; 
       align-items: center;
       min-height: 100vh;
       margin: 0;
       text-align: center;
       padding-top: 50px;
       padding-bottom: 50px;
-      background-color: #f9f9f9; /* Slightly off-white background for better contrast */
+      background-color: #f9f9f9; 
     }
 
     .card {
@@ -27,24 +27,22 @@
       width: 90%;
       max-width: 400px;
       box-sizing: border-box;
-      margin-bottom: 50px; /* Gap between card and art */
-      box-shadow: 3px 3px 0px rgba(0,0,0,1); /* Added a hard shadow for a retro feel */
+      margin-bottom: 50px; 
+      box-shadow: 3px 3px 0px rgba(0,0,0,1); 
     }
 
     /* --- Art Gallery Styles --- */
     .art-section {
-      width: 95%;
-      max-width: 1000px;
+      width: 100%; /* Wider for seamless look */
+      max-width: 1200px;
     }
     
-    /* UPDATED HEADING STYLE */
     .art-section h3 {
-      font-family: 'Courier New', Courier, monospace; /* Typewriter/code style font */
+      font-family: 'Courier New', Courier, monospace;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 1px;
       margin-bottom: 30px;
-      /* Using a thick double border to simulate texture/sketchiness */
       border-bottom: 4px double black;
       padding-bottom: 5px;
       display: inline-block;
@@ -52,38 +50,36 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
+      /* Adjust minmax to control image size */
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0; /* REMOVED SPACE BETWEEN IMAGES */
     }
 
     .gallery-grid img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border: 2px solid black;
-      cursor: pointer; /* Shows it's clickable */
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      height: auto; /* REMOVED FIXED HEIGHT TO PREVENT CROPPING */
+      display: block; /* Removes bottom whitespace/descender gap */
+      border: none; /* REMOVED BORDERS */
+      cursor: pointer; 
+      transition: opacity 0.2s ease;
       background: white;
     }
 
-    /* Added hover effect for gallery images */
     .gallery-grid img:hover {
-        transform: scale(1.03); /* Slight zoom */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        opacity: 0.8; /* Subtle hover instead of scale to maintain grid alignment */
     }
 
-    /* --- Lightbox (Full Screen View) Styles --- */
+    /* --- Lightbox Styles --- */
     #lightbox {
-      display: none; /* Hidden by default */
+      display: none; 
       position: fixed;
-      z-index: 1000; /* Sit on top of everything */
+      z-index: 1000; 
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0, 0, 0, 0.92); /* Dark overlay */
-      /* Flexbox to center the image */
+      background-color: rgba(0, 0, 0, 0.95); 
       justify-content: center;
       align-items: center;
       flex-direction: column;
@@ -91,11 +87,9 @@
 
     #lightbox-img {
       display: block;
-      max-width: 90%;
-      max-height: 85vh;
+      max-width: 95%;
+      max-height: 90vh;
       object-fit: contain;
-      border: 2px solid white;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
     #lightbox-close {
@@ -105,51 +99,25 @@
       color: #f1f1f1;
       font-size: 50px;
       font-weight: bold;
-      transition: 0.3s;
       cursor: pointer;
       z-index: 1001;
     }
 
-    #lightbox-close:hover {
-      color: #bbb;
-      text-decoration: none;
-    }
-
     /* --- Standard Element Styles --- */
-    p {
-      margin-top: 0.5em;
-      margin-bottom: 1em;
-    }
+    p { margin-top: 0.5em; margin-bottom: 1em; }
+    h1, h2 { margin: 0.5em 0; }
 
-    h1, h2 {
-      margin: 0.5em 0;
-    }
-
-    a {
-      text-decoration: none;
-      color: #0000EE;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Specifically targeting the duck image in the card */
+    /* Target Duck Image: Removed border and circle shape */
     .card img {
       width: 100%;
       max-width: 100px;
       height: auto;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid black;
+      border: none; /* REMOVED OUTER CIRCLE BORDER */
+      border-radius: 0; /* REMOVED CIRCLE SHAPE */
     }
 
     @media screen and (max-width: 480px) {
-      .card { padding: 15px; }
-      .card img { max-width: 80px; }
-      p, h2 { font-size: 13px; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      #lightbox-close { top: 10px; right: 20px; font-size: 40px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -166,8 +134,7 @@
 
   <div class="art-section">
     <h3>Rohan's Art 2022-2023</h3>
-    <div id="gallery" class="gallery-grid">
-      </div>
+    <div id="gallery" class="gallery-grid"></div>
   </div>
 
   <div id="lightbox">
@@ -175,15 +142,11 @@
     <img id="lightbox-img" src="">
   </div>
 
-
   <script>
-    // CONFIGURATION
     const username = "glowst0rm"; 
     const repo = "glowst0rm.github.io"; 
-    // Using encodeURIComponent to handle spaces and special characters in folder name securely
     const folderPath = encodeURIComponent("Rohan's Art 2022-2023"); 
 
-    // Get Lightbox Elements
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.getElementById('lightbox-close');
@@ -198,17 +161,15 @@
         const files = await response.json();
 
         files.forEach(file => {
-          // Check if the file is an image based on extension
           if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
             const img = document.createElement('img');
-            img.src = file.download_url; // Direct link to thumbnail
+            img.src = file.download_url;
             img.alt = file.name;
             img.loading = "lazy"; 
 
-            // Add Click event to open Lightbox
             img.onclick = function() {
-                lightbox.style.display = "flex"; // Show the overlay
-                lightboxImg.src = this.src; // Set overlay image to clicked image source
+                lightbox.style.display = "flex";
+                lightboxImg.src = this.src;
             }
 
             gallery.appendChild(img);
@@ -216,21 +177,12 @@
         });
       } catch (error) {
         console.error("Error loading images:", error);
-        gallery.innerHTML = "<p>Failed to load images. Please check console.</p>";
+        gallery.innerHTML = "<p>Failed to load images.</p>";
       }
     }
 
-    // Close Lightbox Logic
-    closeBtn.onclick = function() {
-      lightbox.style.display = "none";
-    }
-
-    // Close lightbox if user clicks on the dark background area
-    lightbox.onclick = function(event) {
-      if (event.target === lightbox) {
-        lightbox.style.display = "none";
-      }
-    }
+    closeBtn.onclick = () => lightbox.style.display = "none";
+    lightbox.onclick = (e) => { if (e.target === lightbox) lightbox.style.display = "none"; }
 
     loadArt();
   </script>
